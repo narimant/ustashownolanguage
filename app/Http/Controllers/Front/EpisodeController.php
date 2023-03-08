@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
+use http\Url;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EpisodeController extends Controller
 {
@@ -68,9 +70,9 @@ class EpisodeController extends Controller
 
         SEOTools::setCanonical($_SERVER['HTTP_HOST'].$course->path());
 
-
+        $downloadLink=\Illuminate\Support\Facades\URL::temporarySignedRoute('safe.download',now()->addMinute(30),['episode'=>$episode->id]);
         $comment=$episode->comments()->where(['status'=>1,'parent_id'=>0])->latest()->with('comments')->get();
-        return view('frontend.episode', compact('course','episode','comment'));
+        return view('frontend.episode', compact('course','episode','comment','downloadLink'));
     }
 
     /**
@@ -105,5 +107,12 @@ class EpisodeController extends Controller
     public function destroy(Episode $episode)
     {
         //
+    }
+
+    public function download(Episode $episode)
+    {
+      $url=$episode->VideoUrl;
+      return Storage::disk('ftp')->download($url);
+
     }
 }

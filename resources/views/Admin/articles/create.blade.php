@@ -14,9 +14,8 @@
         CKEDITOR.replace('body',{
             filebrowserUploadUrl:'/admin/panel/upload-image',
             filebrowserImageUploadUrl:'/admin/panel/upload-image',
-        @if(app()->getLocale()=='fa')
             contentsLangDirection : 'rtl',
-            @endif
+
         })
 
 

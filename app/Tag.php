@@ -16,7 +16,7 @@ class Tag extends Model
         'name','status','lang','seoTitle','seoDescription','seoKeyword'
     ];
 
-    public function sluggable()
+    public function sluggable() :array
     {
         return [
             'slug' => [

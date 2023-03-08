@@ -86,7 +86,7 @@
                                                                 @else
                                                                     <a href="{{ $episode->path() }}" class="mb-2 d-flex justify-content-between align-items-center text-inherit text-decoration-none">
                                                                         <div class="text-truncate">
-                                                                            <span class="icon-shape bg-light text-primary icon-sm rounded-circle me-2"><i class="mdi mdi-play fs-4"></i></span>
+                                                                            <span class="icon-shape bg-light text-primary icon-sm rounded-circle me-2"><i class="fe fe-unlock fs-4"></i></span>
                                                                             <span> {{ $episode->title }}</span>
                                                                         </div>
                                                                         <div class="text-truncate">

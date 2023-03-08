@@ -50,6 +50,20 @@ return [
             'root' => public_path('images'),
             'url' => env('APP_URL').'/images',
         ],
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'ftp.ustashow.com',
+            'username' => 'nariman@ustashow.com',
+            'password' => 'N@riman4606',
+
+            // Optional FTP Settings...
+            //'port' => env('FTP_PORT', 21),
+            // 'root' => env('FTP_ROOT'),
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

@@ -24,7 +24,7 @@ class SitemapController extends Controller
         if(! $sitemap->isCached() ) {
             $date = Carbon::createFromFormat('Y-m-d H:i:s',now());
 
-            $sitemap->addSitemap(url()->to('/sitemap-blogs'),$date,'0.9','daily');
+            $sitemap->addSitemap(url()->to('/sitemap-blog'),$date,'0.9','daily');
             $sitemap->addSitemap(url()->to('/sitemap-courses'),$date,'0.9','daily');
             $sitemap->addSitemap(url()->to('/sitemap-tags'),$date,'0.9','daily');
             $sitemap->addSitemap(url()->to('/sitemap-categories'),$date,'0.9','daily');

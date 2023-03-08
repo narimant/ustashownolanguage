@@ -26,7 +26,7 @@ class Course extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
@@ -43,15 +43,10 @@ class Course extends Model
     public function path()
     {
 
-        $local=app()->getLocale();
 
-        if(array_key_exists($local,config('app.locales')))
-        {
-            return "/$local/course/$this->slug";
-        }else
-        {
+
             return "/course/$this->slug";
-        }
+
 
     }
 

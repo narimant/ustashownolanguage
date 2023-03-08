@@ -48,8 +48,9 @@ Route::namespace('Front')->group(function (){
     Route::post('/contact','HomeController@contactSend')->name('contact.send');
 
     // Download Route
-    Route::get('/download/{episode}' , 'CourseController@download');
+    Route::get('/download/{episode}' , 'EpisodeController@download')->middleware('signed')->name('safe.download');
     Route::get('/search','HomeController@search')->name('home.search');
+
 });
 
 Route::namespace('Front')->middleware(['auth:web','verified'])->group(function (){

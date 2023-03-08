@@ -8,41 +8,7 @@
 
     <div class="p-lg-5 py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12 mb-5">
-                    <div class="rounded-3 position-relative w-100 d-block overflow-hidden p-0">
-                       <!-- <videos id="my-videos"
-                               class="videos-js vjs-big-play-centered"
-                               controls
-                               preload="auto"
 
-                               poster="https://ustashow.com/images/dfgdfgdfg.jpg"
-                               data-setup="{}" >
-                            <source src="https://ustashow.com/images/music_video.mp4" type="videos/mp4">
-
-                            <p class="vjs-no-js">
-                                To view this videos please enable JavaScript, and consider upgrading to a
-                                web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank"
-                                >supports HTML5 videos</a
-                                >
-                            </p>
-
-                        </videos>-->
-
-
-                        <video id="video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}'>
-                            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.720p.webm" type="video/webm" label="720P">
-                            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.webm" type="video/webm" label="480P" selected="true">
-                            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm" type="video/webm" label="360P">
-                            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.240p.webm" type="video/webm" label="240P">
-                        </video>
-
-
-
-                    </div>
-                </div>
-            </div>
             <!-- Content -->
             <div class="row">
                 <div class="col-xl-8 col-lg-12 col-md-12 col-12 mb-4 mb-xl-0">
@@ -117,7 +83,20 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-xl-4 col-lg-12 col-md-12 col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <a href="<?php echo e($downloadLink); ?>" class="btn btn-success btn-block" style="display: block!important;">
+                                <span class="fe fe-download"></span>
+                                <?php echo e(__('messages.Download')); ?>
+
+                            </a>
+                        </div>
+
+                    </div>
                     <div class="card" id="courseAccordion">
                         <div>
                             <!-- List group -->
@@ -147,7 +126,7 @@
                                         <!-- List group item -->
                                     <?php $__currentLoopData = $course->episodes()->latest()->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $episodes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                        <?php if($episodes->type=='cash' || $episodes->type=='vip'): ?>
+                                        <?php if($episodes->type=='cash' ): ?>
                                             <!-- if episode is cash or vip -->
                                                 <li class="list-group-item disabled" aria-disabled="true">
                                                     <a href="#"
@@ -178,7 +157,7 @@
                                                         <?php if('/'.request()->path()== $episodes->path()): ?> bg-light  text-primary <?php else: ?>  bg-success  text-white <?php endif; ?>
 
                                                             icon-sm rounded-circle me-2">
-                                                            <i class="mdi mdi-play fs-4"></i>
+                                                            <i class="fe fe-unlock fs-4"></i>
 
                                                         </span>
                                                             <span><?php echo e($episodes->title); ?></span>

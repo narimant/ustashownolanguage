@@ -1,14 +1,12 @@
-@extends('Admin.master')
+<?php $__env->startSection('style'); ?>
 
-@section('style')
+    <link rel="stylesheet" href="<?php echo e(asset('css/select2.min.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-@endsection
-
-@section('script')
+<?php $__env->startSection('script'); ?>
 
     <script src="/ckeditor/ckeditor.js"></script>
-    <script src="{{asset('js/select2.min.js')}}"></script>
+    <script src="<?php echo e(asset('js/select2.min.js')); ?>"></script>
     <script>
         CKEDITOR.replace('body',{
             filebrowserUploadUrl:'/admin/panel/upload-image',
@@ -36,10 +34,10 @@
 
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="content">
         <div class="container-fluid">
@@ -54,21 +52,21 @@
                 </div>
                 <div class="card-body">
 
-        @include('Admin.section.errors')
-        <form action="{{route('episodes.update' ,['episode'=>$episode->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-            @csrf
-            @method('put')
+        <?php echo $__env->make('Admin.section.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <form action="<?php echo e(route('episodes.update' ,['episode'=>$episode->id])); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('put'); ?>
 
             <div class="form-group">
                 <label  for="title">Titile</label>
-                <input type="text" name="title" value="{{$episode->title}}" class="form-control" id="title" placeholder="insert title " >
+                <input type="text" name="title" value="<?php echo e($episode->title); ?>" class="form-control" id="title" placeholder="insert title " >
             </div>
             <div class="form-group">
                 <label  for="title">Related course</label>
                 <select type="text" name="course_id"  class="form-control" id="course_id"  >
-                    @foreach(\App\Course::latest()->get() as $course)
-                        <option value="{{ $course->id }}" {{ $episode->course_id==$course->id ? 'selected' : '' }}>{{ $course->title }}</option>
-                    @endforeach
+                    <?php $__currentLoopData = \App\Course::latest()->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($course->id); ?>" <?php echo e($episode->course_id==$course->id ? 'selected' : ''); ?>><?php echo e($course->title); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
 
@@ -76,7 +74,7 @@
 
             <div class="form-group">
                 <label  for="body">body</label>
-                <textarea rows="5" name="body"  class="form-control" id="body" placeholder="insert  body" >{{$episode->body}}</textarea>
+                <textarea rows="5" name="body"  class="form-control" id="body" placeholder="insert  body" ><?php echo e($episode->body); ?></textarea>
             </div>
 
             <div class="form-group">
@@ -85,7 +83,7 @@
 
                     <div class="col-sm-6 ">
                         <div class="input-group">
-                            <input type="text" name="VideoUrl"  value="{{$episode->VideoUrl}}" id="VideoUrl" class="form-control" placeholder="Video url or select From manager" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input type="text" name="VideoUrl"  value="<?php echo e($episode->VideoUrl); ?>" id="VideoUrl" class="form-control" placeholder="Video url or select From manager" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" id="button-image" type="button">Select</button>
                             </div>
@@ -94,9 +92,9 @@
                     </div>
                     <div class="col-lg-6">
                         <select class="form-control" id="tags" name="tags[]" multiple="multiple">
-                            @foreach($alltags as $tag)
-                                <option value="{{$tag->id}}" {{ in_array($tag->id,$articletagsids)?'selected':''}}>{{$tag->name}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $alltags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($tag->id); ?>" <?php echo e(in_array($tag->id,$articletagsids)?'selected':''); ?>><?php echo e($tag->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
                 </div>
@@ -107,11 +105,11 @@
 
                     <div class="col-sm-6 ">
                         <label  for="description">Video Time</label>
-                        <input type="text" name="time" value="{{$episode->time}}" class="form-control" id="time" placeholder="insert  time" >
+                        <input type="text" name="time" value="<?php echo e($episode->time); ?>" class="form-control" id="time" placeholder="insert  time" >
                     </div>
                     <div class="col-sm-6 ">
                         <label  for="description">number</label>
-                        <input type="text" name="number" value="{{$episode->number}}" class="form-control" id="number" placeholder="insert  number" >
+                        <input type="text" name="number" value="<?php echo e($episode->number); ?>" class="form-control" id="number" placeholder="insert  number" >
                     </div>
                 </div>
 
@@ -122,29 +120,29 @@
                     <div class="col-sm-6">
                         <label  for="type">Course type</label>
                         <select name="type" id="type" class="form-control">
-                            <option value="vip"{{ $episode->type=='vip' ? 'selected' : '' }}  >Vip</option>
-                            <option value="free" {{ $episode->type=='free' ? 'selected' : '' }} >Free</option>
-                            <option value="cash" {{ $episode->type=='cash' ? 'selected' : '' }} >Cash</option>
+                            <option value="vip"<?php echo e($episode->type=='vip' ? 'selected' : ''); ?>  >Vip</option>
+                            <option value="free" <?php echo e($episode->type=='free' ? 'selected' : ''); ?> >Free</option>
+                            <option value="cash" <?php echo e($episode->type=='cash' ? 'selected' : ''); ?> >Cash</option>
                         </select>
                     </div>
                 </div>
 
             </div>
 
-            {{--      SEO          --}}
+            
             <hr>
             <div class="row mb-3">
                 <div class="col-sm-12 form-group">
                     <label class="form-label" for="seoTitle">Seo Title</label>
-                    <input type="text" class="form-control" name="seoTitle" value="{{$episode->seoTitle}}">
+                    <input type="text" class="form-control" name="seoTitle" value="<?php echo e($episode->seoTitle); ?>">
                 </div>
                 <div class="col-sm-12 form-group">
                     <label class="form-label" for="seoDescription">Seo Description</label>
-                    <input type="text" class="form-control" name="seoDescription" value="{{$episode->seoDescription}}">
+                    <input type="text" class="form-control" name="seoDescription" value="<?php echo e($episode->seoDescription); ?>">
                 </div>
                 <div class="col-sm-12 form-group">
                     <label class="form-label" for="seoKeyword">Seo Keyword</label>
-                    <input type="text" class="form-control" name="seoKeyword" value="{{$episode->seoKeyword}}">
+                    <input type="text" class="form-control" name="seoKeyword" value="<?php echo e($episode->seoKeyword); ?>">
                 </div>
             </div>
 
@@ -156,4 +154,6 @@
 
                 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('Admin.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ustashow\ustashow\resources\views/Admin/episode/edit.blade.php ENDPATH**/ ?>

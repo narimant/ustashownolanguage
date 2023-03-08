@@ -168,4 +168,9 @@ class HomeController extends Controller
         Mail::to('info@ustashow.com')->send(new ContactMail($data));
         return redirect()->back()->withErrors('msg','your contact sucsess fulley send');
     }
+
+    public function download($id)
+    {
+        return $id;
+    }
 }

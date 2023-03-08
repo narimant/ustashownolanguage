@@ -21,7 +21,7 @@ class Page extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
@@ -39,15 +39,9 @@ class Page extends Model
 
     public function path()
     {
-        $local=app()->getLocale();
 
-        if(array_key_exists($local,config('app.locales')))
-        {
-            return "/$local/page/$this->slug";
-        }else
-        {
             return "page/$this->slug";
-        }
+
 
 
 

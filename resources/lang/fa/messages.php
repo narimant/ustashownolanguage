@@ -101,7 +101,7 @@ return [
   'There is currently no display course for the tag of your choice'=>'در حال حاضر برای تگ انتخابی شما دوره ای برای نمایش موجود نیست',
   'Similar videos'=>'ویدیو های مشابه',
     'Home'=>'خانه',
-    ''=>'',
+    'Download'=>'دانلود',
     ''=>'',
     ''=>'',
     ''=>'',
