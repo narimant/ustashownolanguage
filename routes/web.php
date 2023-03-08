@@ -24,7 +24,7 @@ Route::namespace('Front')->group(function (){
     Route::get('page/{pages}','HomeController@pages');
 
     Route::get('/','HomeController@index')->name('index');
-    Route::get('/article/{articleSlug}','ArticleController@single');
+    Route::get('/blog/{articleSlug}','ArticleController@single');
     Route::get('/video/{video:slug}','VideoController@single');
     Route::get('/course/{courseSlug}','CourseController@single');
     Route::get('/category/{categorySlug}','CategoryController@show');
@@ -36,7 +36,7 @@ Route::namespace('Front')->group(function (){
     //sitemap
 
     Route::get('/sitemap','SitemapController@index');
-    Route::get('/sitemap-articles','SitemapController@articles');
+    Route::get('/sitemap-blog','SitemapController@articles');
     Route::get('/sitemap-courses','SitemapController@courses');
     Route::get('/sitemap-tags','SitemapController@tags');
     Route::get('/sitemap-categories','SitemapController@categories');

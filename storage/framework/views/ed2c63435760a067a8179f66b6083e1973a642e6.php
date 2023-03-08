@@ -72,7 +72,11 @@
                             }
                     ?>
                 </a>
-
+                <div class="dropdown-menu  dropdown-menu-end" >
+                    <a class="dropdown-item" href="<?php echo e(url('tr')); ?>"><span class="flag-icon flag-icon-tr"> </span>  turkish</a>
+                    <a class="dropdown-item" href="<?php echo e(url('fa')); ?>"><span class="flag-icon flag-icon-ir"> </span>  farsi</a>
+                    <a class="dropdown-item" href="<?php echo e(url('en')); ?>"><span class="flag-icon flag-icon-us"> </span>  english</a>
+                </div>
             </li>
         </ul>
         <!-- Button -->
@@ -106,7 +110,28 @@
 
 
 
-
+                    <li class="nav-item dropdown d-inline-block">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php
+                        $segment=request()->segments();
+                        if(isset($segment[0]) && $segment[0]=='fa' || app()->getLocale()=='fa')
+                            {
+                               echo '<span class="flag-icon flag-icon-ir"> </span> farsi';
+                            }elseif (isset($segment[0]) && $segment[0]=='tr' || app()->getLocale()=='tr')
+                            {
+                                echo '<span class="flag-icon flag-icon-tr"> </span> Turky';
+                            }else
+                            {
+                                echo '<span class="flag-icon flag-icon-us"> </span> Engliah';
+                            }
+                        ?>
+                        </a>
+                        <div class="dropdown-menu  dropdown-menu-end" >
+                            <a class="dropdown-item" href="<?php echo e(url('tr')); ?>"><span class="flag-icon flag-icon-tr"> </span>  turkish</a>
+                            <a class="dropdown-item" href="<?php echo e(url('fa')); ?>"><span class="flag-icon flag-icon-ir"> </span>  farsi</a>
+                            <a class="dropdown-item" href="<?php echo e(url('en')); ?>"><span class="flag-icon flag-icon-us"> </span>  english</a>
+                        </div>
+                    </li>
 
 
             <!-- user menu-->
