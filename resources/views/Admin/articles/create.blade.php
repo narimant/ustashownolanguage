@@ -71,14 +71,18 @@
                     <label  for="description">  {{__('adminPanel.description')}} </label>
                     <input type="text" name="description" value="{{old('description')}}" class="form-control" id="description" placeholder="{{__('adminPanel.Insert description')}}  " >
                 </div>
+                <div class="form-group">
+                    <label  for="description">  {{__('adminPanel.Read Time')}} </label>
+                    <input type="number" name="ReadTime" value="{{old('ReadTime')}}" class="form-control"  id="ReadTime" placeholder="{{__('adminPanel.Insert Read Time minutes')}}  " >
+                </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label  for="language">  {{__('adminPanel.Language')}} </label>
                             <select name="lang" id="language" class="form-control">
-                                <option value="en" {{app()->getLocale()=='en' ? 'selected' : ''}}>english</option>
-                                <option value="fa" {{app()->getLocale()=='fa' ? 'selected' : ''}}>persian</option>
-                                <option value="tr" {{app()->getLocale()=='tr' ? 'selected' : ''}}>turkish</option>
+
+                                <option value="fa" selected >persian</option>
+
 
                             </select>
                         </div>
@@ -112,14 +116,10 @@
                             <label  for="description">  {{__('adminPanel.Category')}} </label>
                             <div>
                                 <ul class="list-group ">
-                                @foreach(\App\Category::where(['parent_id'=>null,'category_mode'=>'blog'])->with('sub_category')->get() as $value)
-                                        <li class="list-group-item"><input type="checkbox" name="category[]"value="{{ $value->id }}">{{ $value->name }}</input></li>
+                                @foreach(\App\BlogCategory::get() as $value)
+                                        <li class="list-group-item"><input type="radio" name="category_id"value="{{ $value->id }}">{{ $value->name }}</input></li>
 
-                                    @if($value->sub_category->count())
 
-                                        @php $i=1; @endphp
-                                        @include('Admin.articles.categorylist',['child' => $value->sub_category ,'i' => $i])
-                                    @endif
                                 @endforeach
                                 </ul>
                             </div>

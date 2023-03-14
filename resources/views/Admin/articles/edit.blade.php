@@ -65,14 +65,18 @@
                 <label  for="description">{{__('adminPanel.description')}}</label>
                 <input type="text" name="description" value="{{ $article->description }}" class="form-control" id="description" placeholder="insert  description" >
             </div>
+            <div class="form-group">
+                <label  for="description">  {{__('adminPanel.Read Time')}} </label>
+                <input type="number" name="ReadTime" value="{{$article->ReadTime}}" class="form-control"  id="ReadTime" placeholder="{{__('adminPanel.Insert Read Time minutes')}}  " >
+            </div>
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         <label  for="language">{{__('adminPanel.Language')}}</label>
                         <select name="lang" id="language" class="form-control">
-                            <option value="en" {{$article->lang=='en' ? 'selected' : ''}}>english</option>
-                            <option value="fa" {{$article->lang=='fa' ? 'selected' : ''}}>persian</option>
-                            <option value="tr" {{$article->lang=='tr' ? 'selected' : ''}}>turkish</option>
+
+                            <option value="fa" selected >persian</option>
+
 
                         </select>
                     </div>
@@ -116,20 +120,11 @@
 
                         <div>
                             <ul class="list-group ">
-                                @foreach(\App\Category::where(['parent_id'=>null,'category_mode'=>'blog'])->with('sub_category')->get() as $value)
-                                    <li class="list-group-item"><input type="checkbox" name="category[]"
-                                                                       @foreach($article->categories()->get() as $category)
-                                                                           @if($category->id==$value->id)
-                                                                                checked
-                                                                            @endif
-                                                                       @endforeach
-                                                                       value="{{ $value->id }}">{{ $value->name }}</input></li>
+                                @foreach(\App\BlogCategory::get() as $value)
+                                    <li class="list-group-item">
+                                        <input type="radio" name="category_id" {{$article->category_id== $value->id ? 'checked ' : ''}}  value="{{ $value->id }}" >{{ $value->name }}</li>
 
-                                    @if($value->sub_category->count())
 
-                                        @php $i=1; @endphp
-                                        @include('Admin.articles.categoryeditlist',['child' => $value->sub_category ,'i' => $i,'article'=>$article])
-                                    @endif
                                 @endforeach
                             </ul>
                         </div>

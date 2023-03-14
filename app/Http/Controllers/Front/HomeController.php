@@ -173,4 +173,43 @@ class HomeController extends Controller
     {
         return $id;
     }
+
+
+    public function BlogIndex()
+    {
+
+
+
+
+        /*
+       * seo strat
+       */
+        /*SEOMeta::setTitle($category->seoData('seoTitle'));
+        SEOMeta::setDescription($category->seoData('seoDescription'));
+        SEOMeta::addKeyword($category->seoData('seoKeyword'));
+
+        OpenGraph::setTitle($category->seoData('seoTitle'));
+        OpenGraph::setDescription($category->seoData('seoDescription'));
+        OpenGraph::setUrl($_SERVER['HTTP_HOST'].$category->path());
+        OpenGraph::addProperty('type', 'articles');
+        OpenGraph::setSiteName(\env('APP_NAME'));
+        OpenGraph::addProperty('locale', $local);
+
+        $categoryslug=$category->slug;
+        SEOTools::setCanonical($_SERVER['HTTP_HOST'].$category->path());*/
+
+
+
+
+
+            $articles=Article::latest()->paginate(20);
+
+            return view('frontend.blog-index',compact('articles'));
+
+
+
+
+
+
+    }
 }

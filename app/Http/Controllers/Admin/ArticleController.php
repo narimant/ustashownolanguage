@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\BlogCategory;
 use App\Category;
 use App\Http\Requests\ArticleRequest;
 use App\Tag;
@@ -92,8 +93,8 @@ class ArticleController extends AdminController
         /*
          * start work on category
          */
-        $category=Category::find($request->category);
-        unset($request['category']);
+        $category=BlogCategory::find($request->category);
+
         /*
          * end work on category
          */
@@ -103,11 +104,11 @@ class ArticleController extends AdminController
          * save data
          */
         $newarticle=auth()->user()->article()->create(array_merge($request->all() , [ 'images' => $imagesUrl ]));
-        $newarticle->categories()->sync($category);
-        if ( !empty($allTagfind))
-        {
-            $newarticle->tags()->sync($allTagfind);
-        }
+        //$newarticle->categories()->sync($category);
+//        if ( !empty($allTagfind))
+//        {
+//            $newarticle->tags()->sync($allTagfind);
+//        }
 
 
 
@@ -175,12 +176,6 @@ class ArticleController extends AdminController
 
         unset($inputs['imagesThumb']);
 
-        /****
-         * unset category ids of request for add or update article
-         * and set request category in category argument for sync with category tables
-         */
-        $category=Category::find($request->category);
-       unset($inputs['category']);
 
 
         /****
@@ -206,8 +201,9 @@ class ArticleController extends AdminController
             $inputs['slug']=SlugService::createSlug(Article::class, 'slug', $inputs['slug']);
 
         }
+
         $article->update($inputs);
-        $article->categories()->sync($category);
+
         $article->tags()->sync($allTagfind);
         return redirect(route('articles.index'));
 

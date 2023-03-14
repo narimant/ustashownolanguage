@@ -81,6 +81,15 @@
                                     </a>
                                 </li>
                             @endcan
+                                @can('blog_category')
+                                    <li class="nav-item">
+                                        <a href="{{route('blogcategory.index')}}"
+                                           class="nav-link {{ Route::is('blogcategory.index')? 'active': '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{__('adminPanel.Create Blog Ctegory')}}</p>
+                                        </a>
+                                    </li>
+                                @endcan
                         </ul>
                     </li>
                 @endcan

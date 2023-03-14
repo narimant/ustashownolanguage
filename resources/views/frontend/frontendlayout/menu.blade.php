@@ -55,24 +55,7 @@
 
             </li>
             @endauth
-            <li class="dropdown p-2 ">
-                <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    @php
-                        $segment=request()->segments();
-                        if(isset($segment[0]) && $segment[0]=='fa' || app()->getLocale()=='fa')
-                            {
-                               echo '<span class="flag-icon flag-icon-ir"> </span> ';
-                            }elseif (isset($segment[0]) && $segment[0]=='tr' || app()->getLocale()=='tr')
-                            {
-                                echo '<span class="flag-icon flag-icon-tr"> </span> ';
-                            }else
-                            {
-                                echo '<span class="flag-icon flag-icon-us"> </span> ';
-                            }
-                    @endphp
-                </a>
 
-            </li>
         </ul>
         <!-- Button -->
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">

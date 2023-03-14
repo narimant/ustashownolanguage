@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Route;
+
 
 class Article extends Model
 {
@@ -90,9 +90,9 @@ class Article extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function categories()
+    public function BlogCategory()
     {
-        return $this->morphToMany(Category::class, 'categoryable');
+        return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
     }
 
     /**

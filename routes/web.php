@@ -26,10 +26,11 @@ Route::namespace('Front')->group(function (){
     Route::get('/','HomeController@index')->name('index');
     Route::get('/blog/{articleSlug}','ArticleController@single');
     Route::get('/video/{video:slug}','VideoController@single');
-    Route::get('/course/{courseSlug}','CourseController@single');
+    Route::get('/course/{courseSlug}','CourseController@single')->name('course.single');
     Route::get('/category/{categorySlug}','CategoryController@show');
     Route::get('/tag/{tagSlug}/{type?}','TagController@show')->name('tag.show');
-
+    Route::get('/blog','BlogCategoryController@blogIndex')->name('blog.index');
+    Route::get('blog/category/{category:slug}','BlogCategoryController@show');
     Route::get('/courses/{courseSlug}/episode/{episode}','EpisodeController@show' );
     Route::post('comment','HomeController@comment')->name('comment.send');
 
@@ -86,6 +87,7 @@ Route::namespace('Admin')->prefix('/admin')->middleware(['auth:web','chekAdmin',
     Route::get('article/{id}','ArticleController@restore')->name('article.restore');
     Route::get('article/publish/{id}','ArticleController@publish')->name('article.publish');
     Route::delete('article/{id}','ArticleController@forceDelete')->name('article.forceDelete');
+    Route::resource('blogcategory','BlogCategoryController');
 
 
     //videos section

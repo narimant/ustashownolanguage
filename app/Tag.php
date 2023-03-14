@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends Model
 {
-
+    use SoftDeletes;
     use Sluggable;
     protected $fillable=[
         'name','status','lang','seoTitle','seoDescription','seoKeyword'

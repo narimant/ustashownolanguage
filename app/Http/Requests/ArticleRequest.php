@@ -29,7 +29,7 @@ class ArticleRequest extends FormRequest
               return [
             'title'=>'required|max:250',
             'description'=>'required',
-            'category'=>'required',
+            'category_id'=>'required',
             'body'=>'required',
             'images'=>'required|mimes:jpg,png,bmp|max:3000',
 

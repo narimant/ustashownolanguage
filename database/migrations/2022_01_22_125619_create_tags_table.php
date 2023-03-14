@@ -21,6 +21,7 @@ class CreateTagsTable extends Migration
             $table->string('seoDescription')->nullable();
             $table->string('seoKeyword')->nullable();
             $table->string('lang',10)->default('en');
+            $table->tinyInteger('status')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

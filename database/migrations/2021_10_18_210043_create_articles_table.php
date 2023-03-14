@@ -25,6 +25,7 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->text('images');
             $table->integer('ViewCount')->default(0);
+            $table->integer('ReadTime')->nullable();
             $table->integer('CommentCount')->default(0);
             $table->string('lang',10)->default('en');
             $table->boolean('status')->default(0);

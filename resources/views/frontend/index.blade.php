@@ -86,7 +86,7 @@
 
                 @foreach($videos as $video)
                     <!-- Card -->
-                        <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                        <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3 ">
                             <div class="card  card-hover p-0">
                                 <a href="{{$video->path()}}" class="card-img-top">
 
@@ -145,7 +145,7 @@
 
                 @foreach($articles as $article)
                 <!-- Card -->
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-3">
                     <div class="card  card-hover p-0">
                         <a href="{{$article->path()}}" class="card-img-top">
                             <img src="{{ $article->images['tumbnail'] }}" alt="" class="rounded-top-md card-img-top">
@@ -202,7 +202,7 @@
 
             @foreach($courses as $course)
                 <!-- Card -->
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-3">
                     <div class="card  card-hover p-0">
                         <a href="{{$course->path()}}" class="card-img-top">
                             <img src="{{ $course->images['tumbnail'] }}" alt="" class="rounded-top-md card-img-top">

@@ -63,14 +63,18 @@
                 <label  for="description"><?php echo e(__('adminPanel.description')); ?></label>
                 <input type="text" name="description" value="<?php echo e($article->description); ?>" class="form-control" id="description" placeholder="insert  description" >
             </div>
+            <div class="form-group">
+                <label  for="description">  <?php echo e(__('adminPanel.Read Time')); ?> </label>
+                <input type="number" name="ReadTime" value="<?php echo e($article->ReadTime); ?>" class="form-control"  id="ReadTime" placeholder="<?php echo e(__('adminPanel.Insert Read Time minutes')); ?>  " >
+            </div>
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         <label  for="language"><?php echo e(__('adminPanel.Language')); ?></label>
                         <select name="lang" id="language" class="form-control">
-                            <option value="en" <?php echo e($article->lang=='en' ? 'selected' : ''); ?>>english</option>
-                            <option value="fa" <?php echo e($article->lang=='fa' ? 'selected' : ''); ?>>persian</option>
-                            <option value="tr" <?php echo e($article->lang=='tr' ? 'selected' : ''); ?>>turkish</option>
+
+                            <option value="fa" selected >persian</option>
+
 
                         </select>
                     </div>
@@ -115,20 +119,11 @@
 
                         <div>
                             <ul class="list-group ">
-                                <?php $__currentLoopData = \App\Category::where(['parent_id'=>null,'category_mode'=>'blog'])->with('sub_category')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="list-group-item"><input type="checkbox" name="category[]"
-                                                                       <?php $__currentLoopData = $article->categories()->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                           <?php if($category->id==$value->id): ?>
-                                                                                checked
-                                                                            <?php endif; ?>
-                                                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                       value="<?php echo e($value->id); ?>"><?php echo e($value->name); ?></input></li>
+                                <?php $__currentLoopData = \App\BlogCategory::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li class="list-group-item">
+                                        <input type="radio" name="category_id" <?php echo e($article->category_id== $value->id ? 'checked ' : ''); ?>  value="<?php echo e($value->id); ?>" ><?php echo e($value->name); ?></li>
 
-                                    <?php if($value->sub_category->count()): ?>
 
-                                        <?php $i=1; ?>
-                                        <?php echo $__env->make('Admin.articles.categoryeditlist',['child' => $value->sub_category ,'i' => $i,'article'=>$article], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>

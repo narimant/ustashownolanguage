@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('style'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/select2.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/select2-bootstrap4.min.css')); ?>">
@@ -14,9 +12,8 @@
         CKEDITOR.replace('body',{
             filebrowserUploadUrl:'/admin/panel/upload-image',
             filebrowserImageUploadUrl:'/admin/panel/upload-image',
-        <?php if(app()->getLocale()=='fa'): ?>
             contentsLangDirection : 'rtl',
-            <?php endif; ?>
+
         })
 
 
@@ -73,14 +70,18 @@
                     <label  for="description">  <?php echo e(__('adminPanel.description')); ?> </label>
                     <input type="text" name="description" value="<?php echo e(old('description')); ?>" class="form-control" id="description" placeholder="<?php echo e(__('adminPanel.Insert description')); ?>  " >
                 </div>
+                <div class="form-group">
+                    <label  for="description">  <?php echo e(__('adminPanel.Read Time')); ?> </label>
+                    <input type="number" name="ReadTime" value="<?php echo e(old('ReadTime')); ?>" class="form-control"  id="ReadTime" placeholder="<?php echo e(__('adminPanel.Insert Read Time minutes')); ?>  " >
+                </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label  for="language">  <?php echo e(__('adminPanel.Language')); ?> </label>
                             <select name="lang" id="language" class="form-control">
-                                <option value="en" <?php echo e(app()->getLocale()=='en' ? 'selected' : ''); ?>>english</option>
-                                <option value="fa" <?php echo e(app()->getLocale()=='fa' ? 'selected' : ''); ?>>persian</option>
-                                <option value="tr" <?php echo e(app()->getLocale()=='tr' ? 'selected' : ''); ?>>turkish</option>
+
+                                <option value="fa" selected >persian</option>
+
 
                             </select>
                         </div>
@@ -90,7 +91,7 @@
                             <label  for="status">  <?php echo e(__('adminPanel.Display Status')); ?> </label>
                             <select name="status" id="status" class="form-control">
                                 <option value="0" selected><?php echo e(__('adminPanel.Draft')); ?></option>
-                                <option value="1"><?php echo e(__('adminPanel.publish')); ?></option>
+                                <option value="1"><?php echo e(__('adminPanel.Publish')); ?></option>
 
 
                             </select>
@@ -114,14 +115,10 @@
                             <label  for="description">  <?php echo e(__('adminPanel.Category')); ?> </label>
                             <div>
                                 <ul class="list-group ">
-                                <?php $__currentLoopData = \App\Category::where(['parent_id'=>null,'category_mode'=>'blog'])->with('sub_category')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <li class="list-group-item"><input type="checkbox" name="category[]"value="<?php echo e($value->id); ?>"><?php echo e($value->name); ?></input></li>
+                                <?php $__currentLoopData = \App\BlogCategory::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li class="list-group-item"><input type="radio" name="category_id"value="<?php echo e($value->id); ?>"><?php echo e($value->name); ?></input></li>
 
-                                    <?php if($value->sub_category->count()): ?>
 
-                                        <?php $i=1; ?>
-                                        <?php echo $__env->make('Admin.articles.categorylist',['child' => $value->sub_category ,'i' => $i], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </div>

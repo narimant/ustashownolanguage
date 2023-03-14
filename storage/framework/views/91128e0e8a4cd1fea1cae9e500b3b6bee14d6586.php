@@ -1,13 +1,32 @@
 <?php $__env->startSection('content'); ?>
 
     <div class="container crumb p-4">
-    <?php echo e(Breadcrumbs::render('category', $category)); ?>
 
     </div>
 
 
 
-
+    <header class="archive-header pt-9 pb-9">
+        <div class="container">
+            <div class="row">
+                <div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
+                    <div class="text-center mb-5">
+                        <h1 class="page-title display-2 fw-bold"><?php echo e(__('adminPanel.Ustashow Blog')); ?></h1>
+                        <div class="taxonomy-description lead"></div>
+                    </div>
+                    <form role="search" method="get" class="search-form row px-md-20" action="https://geeks.madrasthemes.com/">
+                        <div class="mb-3 col ps-0  ms-2 ms-md-0">
+                            <input type="search" class="search-field form-control" placeholder="<?php echo e(__('messages.Search In Blog...')); ?>" value="" name="s" title="Search for:">
+                            <input type="hidden" class="form-control" name="post_type" value="post">
+                        </div>
+                        <div class="mb-3 col-auto ps-0">
+                            <button class="btn btn-primary" type="submit"><?php echo e(__('messages.Search')); ?></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
 
 <div class="pb-8">
     <div class="container">
@@ -15,15 +34,34 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                 <!-- Flush Nav -->
                 <div class="flush-nav">
-                    <nav class="nav">
-                        <a class="nav-link active ps-0" href="<?php echo e(Route::currentRouteName()); ?>"><?php echo e(__('messages.All')); ?></a>
+                    <ul id="menu-blog-categories" class="nav ms-n4 text-nowrap" itemscope="" >
+                        <li id="menu-item-2812" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2812 nav-item">
+                            <a  class="nav-link <?php echo e(Route::is('blog.index')? 'active': ''); ?>" itemprop="url" href="<?php echo e(route('blog.index')); ?>" onclick="return true">
+                                <span itemprop="name"><?php echo e(__('messages.All')); ?></span>
+                            </a>
 
-                    </nav>
+                        </li>
+
+                        <?php $__currentLoopData = $allcategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li id="menu-item-2812" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2812 nav-item">
+                                <a  class="nav-link " itemprop="url" href="<?php echo e($category->path()); ?>" onclick="return true">
+                                    <span itemprop="name"><?php echo e($category->name); ?></span>
+                                </a>
+
+                            </li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+
+
+
+
                 </div>
             </div>
             <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($article->status==1 ): ?>
+
+
                 <?php if($loop->first): ?>
+
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                         <!-- Card -->
                         <div class="card mb-4 shadow-lg">
@@ -34,11 +72,12 @@
                                 <div class="col-lg-4 col-md-12 col-12">
                                     <!-- Card body -->
                                     <div class="card-body">
-                                        <?php $__currentLoopData = $article->categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <a href="<?php echo e($category->path()); ?>" class="fs-5 mb-3 fw-semi-bold d-block">
-                                           <span style="color: <?php echo e($category->color); ?>;"><?php echo e($category->name); ?></span>
+
+
+                                        <a href="<?php echo e($article->BlogCategory->path()); ?>" class="fs-5 fw-semi-bold d-block mb-3">
+                                            <span style="color:<?php echo e($article->BlogCategory->color); ?>  "> <?php echo e($article->BlogCategory->name); ?></span>
                                         </a>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                         <h1 class="mb-2 mb-lg-4"> <a href="<?php echo e($article->path()); ?>" class="text-inherit">
                                                <?php echo e($article->title); ?>
 
@@ -55,7 +94,11 @@
                                                 <h5 class="mb-1"><?php echo e($article->user->name); ?></h5>
                                                 <p class="fs-6 mb-0"><?php echo e($article->CreateTimeDiff); ?></p>
                                             </div>
-
+                                            <div class="col-auto">
+                                                <?php if($article->ReadTime != null): ?>
+                                                <?php echo e($article->ReadTime); ?> <?php echo e(__('adminPanel.min read')); ?> </p>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -69,11 +112,11 @@
                             <a href="<?php echo e($article->path()); ?>" class="card-img-top"> <img src="<?php echo e($article->images['images']['300']); ?>" class="card-img-top rounded-top-md" alt=""></a>
                             <!-- Card body -->
                             <div class="card-body">
-                                <?php $__currentLoopData = $article->categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a href="<?php echo e($category->path()); ?>" class="fs-5 fw-semi-bold d-block mb-3">
-                                        <span style="color: <?php echo e($category->color); ?>;"> <?php echo e($category->name); ?></span>
+
+                                    <a href="<?php echo e($article->BlogCategory->path()); ?>" class="fs-5 fw-semi-bold d-block mb-3">
+                                        <span style="color: <?php echo e($article->BlogCategory->color); ?>;"> <?php echo e($article->BlogCategory->name); ?></span>
                                     </a>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
 
                                 <h3><a href="<?php echo e($article->path()); ?>" class="text-inherit">
                                         <?php echo e(\Str::limit($article->title, 25, ' ...')); ?>
@@ -90,13 +133,17 @@
                                         <h5 class="mb-1"><?php echo e($article->user->name); ?></h5>
                                         <p class="fs-6 mb-0"><?php echo e($article->CreateTimeDiff); ?></p>
                                     </div>
-
+                                    <div class="col-auto">
+                                    <?php if($article->ReadTime != null): ?>
+                                    <?php echo e($article->ReadTime); ?> <?php echo e(__('adminPanel.min read')); ?> </p>
+                                    <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php endif; ?>
-            <?php endif; ?>
+
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 

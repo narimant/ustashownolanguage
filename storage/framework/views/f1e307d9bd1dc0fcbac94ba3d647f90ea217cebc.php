@@ -84,7 +84,7 @@
 
                 <?php $__currentLoopData = $videos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $video): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <!-- Card -->
-                        <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                        <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3 ">
                             <div class="card  card-hover p-0">
                                 <a href="<?php echo e($video->path()); ?>" class="card-img-top">
 
@@ -143,7 +143,7 @@
 
                 <?php $__currentLoopData = $articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $article): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <!-- Card -->
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-3">
                     <div class="card  card-hover p-0">
                         <a href="<?php echo e($article->path()); ?>" class="card-img-top">
                             <img src="<?php echo e($article->images['tumbnail']); ?>" alt="" class="rounded-top-md card-img-top">
@@ -200,7 +200,7 @@
 
             <?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <!-- Card -->
-                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-md-3 mb-sm-3">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-md-6 mb-3">
                     <div class="card  card-hover p-0">
                         <a href="<?php echo e($course->path()); ?>" class="card-img-top">
                             <img src="<?php echo e($course->images['tumbnail']); ?>" alt="" class="rounded-top-md card-img-top">

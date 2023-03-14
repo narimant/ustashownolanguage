@@ -47,8 +47,8 @@ class LoginController extends Controller
     public function redirectToProvider()
     {
       //$redirectUrl = "https://ustashow.com/tr/login/google/callback";
-             $local=app()->getLocale();
-        config(['services.google.redirect' => 'https://ustashow.com/'.$local.'/login/google/callback']);
+
+        config(['services.google.redirect' => 'https://ustashow.com/login/google/callback']);
 
        return Socialite::driver('google')->redirect();
               
@@ -58,8 +58,8 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
-              $local=app()->getLocale();
-        config(['services.google.redirect' => 'https://ustashow.com/'.$local.'/login/google/callback']);
+
+        config(['services.google.redirect' => 'https://ustashow.com/login/google/callback']);
         $user = Socialite::driver('google')->user();
         $userfind=User::whereEmail($user->getEmail())->first();
 

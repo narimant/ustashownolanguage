@@ -23,44 +23,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $local=app()->getLocale();
 
-
-        $categorychilds= $this->categoryTree($category->id);
-
-
-        $articles=$category->articles()->OrwhereIn('categoryables.category_id',$categorychilds)->latest()->paginate(15);
-
-
-        /*
-        * seo strat
-        */
-        SEOMeta::setTitle($category->seoData('seoTitle'));
-        SEOMeta::setDescription($category->seoData('seoDescription'));
-        SEOMeta::addKeyword($category->seoData('seoKeyword'));
-
-        OpenGraph::setTitle($category->seoData('seoTitle'));
-        OpenGraph::setDescription($category->seoData('seoDescription'));
-        OpenGraph::setUrl($_SERVER['HTTP_HOST'].$category->path());
-        OpenGraph::addProperty('type', 'articles');
-        OpenGraph::setSiteName(\env('APP_NAME'));
-        OpenGraph::addProperty('locale', $local);
-
-        $categoryslug=$category->slug;
-        SEOTools::setCanonical($_SERVER['HTTP_HOST'].$category->path());
-
-
-
-
-
-
-
-
-
-           return view('frontend.categorypagearticle',compact('articles','categoryslug','category'));
-
-
-           // return view('frontend.categorypagecourse',compact('courses','categoryslug'));
 
 
     }

@@ -106,4 +106,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('frontend.frontendlayout.frontendmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ustashow/domains/ustashow.com/resources/views/frontend/categorypagearticle.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.frontendlayout.frontendmaster', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ustashow/domains/ustashow.com/resources/views/frontend/blog-index.blade.php ENDPATH**/ ?>
