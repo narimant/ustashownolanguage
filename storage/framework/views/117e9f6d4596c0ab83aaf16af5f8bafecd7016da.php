@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header d-flex align-content-center">
                     <h3 class="card-title "><?php echo e(__('adminPanel.All Category')); ?></h3>
-                    <a href="<?php echo e(route('blogcategory.create')); ?>" class="btn btn-warning ml-auto p-2"><?php echo e(__('adminPanel.Create Category')); ?></a>
+                    <a href="<?php echo e(route('blogCategories.create')); ?>" class="btn btn-warning ml-auto p-2"><?php echo e(__('adminPanel.Create Category')); ?></a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -37,12 +37,12 @@
 
                                 <td><?php echo e($category->category_mode); ?></td>
                                 <td>
-                                    <form action="<?php echo e(route('categories.destroy' , ['category'=>$category->id])); ?>" method="post">
+                                    <form action="<?php echo e(route('blogCategories.destroy' , ['blogCategory'=>$category->id])); ?>" method="post">
 
                                         <?php echo method_field('DELETE'); ?>
                                         <?php echo csrf_field(); ?>
                                         <div class="btn btn-group">
-                                            <a   href="<?php echo e(route('categories.edit', [ 'category'=>$category->id])); ?>" class="btn btn-primary"><?php echo e(__('adminPanel.Edit')); ?></a>
+                                            <a   href="<?php echo e(route('blogCategories.edit', [ 'blogCategory'=>$category->id])); ?>" class="btn btn-primary"><?php echo e(__('adminPanel.Edit')); ?></a>
                                             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')" ><?php echo e(__('adminPanel.Delete')); ?></button>
                                         </div>
                                     </form>

@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header d-flex align-content-center">
                     <h3 class="card-title ">{{__('adminPanel.All Category')}}</h3>
-                    <a href="{{ route('blogcategory.create') }}" class="btn btn-warning ml-auto p-2">{{__('adminPanel.Create Category')}}</a>
+                    <a href="{{ route('blogCategories.create') }}" class="btn btn-warning ml-auto p-2">{{__('adminPanel.Create Category')}}</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -37,12 +37,12 @@
 
                                 <td>{{$category->category_mode}}</td>
                                 <td>
-                                    <form action="{{ route('categories.destroy' , ['category'=>$category->id]) }}" method="post">
+                                    <form action="{{ route('blogCategories.destroy' , ['blogCategory'=>$category->id]) }}" method="post">
 
                                         @method('DELETE')
                                         @csrf
                                         <div class="btn btn-group">
-                                            <a   href="{{ route('categories.edit', [ 'category'=>$category->id]) }}" class="btn btn-primary">{{__('adminPanel.Edit')}}</a>
+                                            <a   href="{{ route('blogCategories.edit', [ 'blogCategory'=>$category->id]) }}" class="btn btn-primary">{{__('adminPanel.Edit')}}</a>
                                             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')" >{{__('adminPanel.Delete')}}</button>
                                         </div>
                                     </form>

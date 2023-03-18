@@ -87,7 +87,9 @@ Route::namespace('Admin')->prefix('/admin')->middleware(['auth:web','chekAdmin',
     Route::get('article/{id}','ArticleController@restore')->name('article.restore');
     Route::get('article/publish/{id}','ArticleController@publish')->name('article.publish');
     Route::delete('article/{id}','ArticleController@forceDelete')->name('article.forceDelete');
-    Route::resource('blogcategory','BlogCategoryController');
+
+    Route::resource('blogCategories','BlogCategoryController');
+
 
 
     //videos section

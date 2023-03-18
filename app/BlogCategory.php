@@ -1,18 +1,20 @@
 <?php
 
 namespace App;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BlogCategory extends Model
 {
+    use Sluggable;
     protected $table = 'blog_categories';
     use HasFactory;
 
     protected $fillable=[
         'name',
         'color',
+        'description',
         'parent_id',
         'lang',
         'seoTitle',
@@ -42,5 +44,4 @@ class BlogCategory extends Model
     {
         return $this->hasMany(Article::class,  'category_id', 'id');
     }
-
 }

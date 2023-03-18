@@ -17,6 +17,8 @@ class CreateBlogCategoriesTable extends Migration
             $table->id();
             $table->string('name',255);
             $table->string('description',255);
+            $table->text('description')->nullable();
+            $table->string('lang',50)->nullable();
             $table->string('slug',255);
             $table->string('color',50)->nullable();
             $table->string('seoTitle')->nullable();

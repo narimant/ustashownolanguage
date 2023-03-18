@@ -19,7 +19,7 @@
                 <div class="card-body">
 
                     @include('Admin.section.errors')
-                    <form action="{{route('blogcategory.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{route('blogCategories.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         @csrf
 
                         <div class="form-group">
@@ -36,7 +36,12 @@
 
 
 
+                        <div class="form-group">
+                            <label  for="description">{{__('adminPanel.description')}}</label>
+                            <textarea name="description"  id="description" class="form-control">
+                </textarea>
 
+                        </div>
 
 
                         {{--      SEO          --}}

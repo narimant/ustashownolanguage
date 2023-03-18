@@ -85,8 +85,8 @@
                             <?php endif; ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog_category')): ?>
                                     <li class="nav-item">
-                                        <a href="<?php echo e(route('blogcategory.index')); ?>"
-                                           class="nav-link <?php echo e(Route::is('blogcategory.index')? 'active': ''); ?>">
+                                        <a href="<?php echo e(route('blogCategories.index')); ?>"
+                                           class="nav-link <?php echo e(Route::is('blogCategories.index')? 'active': ''); ?>">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p><?php echo e(__('adminPanel.Create Blog Ctegory')); ?></p>
                                         </a>

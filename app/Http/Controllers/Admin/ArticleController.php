@@ -8,6 +8,7 @@ use App\Category;
 use App\Http\Requests\ArticleRequest;
 use App\Tag;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\File;
 
 
 class ArticleController extends AdminController
@@ -165,6 +166,21 @@ class ArticleController extends AdminController
         if($files)
         {
 
+
+            foreach($article['images']['images'] as $key=>$value)
+            {
+
+
+              if (File::exists(public_path($value)))
+              {
+                  File::delete(public_path($value));
+
+              }
+            }
+
+
+
+
             $inputs['images']=$this->uploadimage($files);
 
         }
@@ -243,6 +259,16 @@ class ArticleController extends AdminController
     public function forceDelete( $id)
     {
             $article=Article::onlyTrashed()->findOrFail($id);
+        foreach($article['images']['images'] as $key=>$value)
+        {
+
+
+            if (File::exists(public_path($value)))
+            {
+                File::delete(public_path($value));
+
+            }
+        }
        $article->forceDelete();
         return redirect()->back();
     }

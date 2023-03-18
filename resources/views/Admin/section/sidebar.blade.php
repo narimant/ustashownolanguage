@@ -83,8 +83,8 @@
                             @endcan
                                 @can('blog_category')
                                     <li class="nav-item">
-                                        <a href="{{route('blogcategory.index')}}"
-                                           class="nav-link {{ Route::is('blogcategory.index')? 'active': '' }}">
+                                        <a href="{{route('blogCategories.index')}}"
+                                           class="nav-link {{ Route::is('blogCategories.index')? 'active': '' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{__('adminPanel.Create Blog Ctegory')}}</p>
                                         </a>

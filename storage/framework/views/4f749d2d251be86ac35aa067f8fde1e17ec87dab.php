@@ -15,7 +15,7 @@
                 <div class="card-body">
 
                     <?php echo $__env->make('Admin.section.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                    <form action="<?php echo e(route('blogcategory.store')); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="<?php echo e(route('blogCategories.store')); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group">
@@ -32,7 +32,12 @@
 
 
 
+                        <div class="form-group">
+                            <label  for="description"><?php echo e(__('adminPanel.description')); ?></label>
+                            <textarea name="description"  id="description" class="form-control">
+                </textarea>
 
+                        </div>
 
 
                         

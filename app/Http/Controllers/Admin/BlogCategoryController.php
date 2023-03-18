@@ -40,11 +40,12 @@ class BlogCategoryController extends AdminController
         BlogCategory::create([
             'name'=>$request->name,
             'color'=>$request->color,
+            'description'=>$request->color,
             'seoTitle'=>$request->seoTitle,
             'seoDescription'=>$request->seoDescription,
             'seoKeyword'=>$request->seoKeyword,
         ]);
-        return  redirect(route('blogcategory.index'));
+        return  redirect(route('blogCategories.index'));
     }
 
     /**
@@ -66,7 +67,8 @@ class BlogCategoryController extends AdminController
      */
     public function edit(BlogCategory $blogCategory)
     {
-        //
+
+        return view('Admin.blogcategory.edit',compact('blogCategory'));
     }
 
     /**
@@ -78,7 +80,9 @@ class BlogCategoryController extends AdminController
      */
     public function update(Request $request, BlogCategory $blogCategory)
     {
-        //
+
+        $blogCategory->update($request->all());
+        return  redirect(route('blogCategories.index'));
     }
 
     /**
@@ -89,6 +93,7 @@ class BlogCategoryController extends AdminController
      */
     public function destroy(BlogCategory $blogCategory)
     {
-        //
+        $blogCategory->delete();
+        return redirect(route('blogCategories.index'));
     }
 }

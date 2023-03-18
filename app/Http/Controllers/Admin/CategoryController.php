@@ -43,7 +43,6 @@ class CategoryController extends Controller
         Category::create([
             'name'=>$request->name,
             'color'=>$request->color,
-            'category_mode'=>$request->category_mode,
             'lang'=>$request->lang,
             'seoTitle'=>$request->seoTitle,
             'seoDescription'=>$request->seoDescription,
@@ -84,6 +83,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+
         $category->update($request->all());
         return redirect(route('categories.index'));
     }
